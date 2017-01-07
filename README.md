@@ -1,7 +1,7 @@
 # material-todo
 First app build with React + Redux + Material UI
 
-Install
+# Install
 npm install
 ./node_modules/webpack/bin/webpack.js --watch
 
