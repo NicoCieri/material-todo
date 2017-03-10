@@ -22735,7 +22735,7 @@
 
 	    case 'TOGGLE_PAUSE_TODO':
 	      // console.log(action);
-	      if (state.id !== action.id) return state;else return Object.assign({}, state, { pause: !state.pause });
+	      if (state.id !== action.id) return state;else return Object.assign({}, state, { pause: !state.pause, timer: action.timer, timer_formated: action.timer.toString().toHHMMSS() });
 	      break;
 
 	    case 'COMPLETE_TODO':
@@ -34563,7 +34563,7 @@
 	  _createClass(TodosList, [{
 	    key: 'render',
 	    value: function render() {
-	      var list = '';
+	      console.log('this.props.todos', this.props.todos);
 	      return _react2.default.createElement(
 	        _List2.default,
 	        null,
@@ -34682,8 +34682,8 @@
 	    _this.completeItem = _this.completeItem.bind(_this);
 	    _this.increaseTimer = _this.increaseTimer.bind(_this);
 	    _this.state = {
-	      timer: 0,
-	      timer_formated: toHHMMSS(0)
+	      timer: _this.props.todo.timer,
+	      timer_formated: toHHMMSS(_this.props.todo.timer)
 	    };
 	    return _this;
 	  }
@@ -34696,8 +34696,8 @@
 	  }, {
 	    key: 'togglePauseItem',
 	    value: function togglePauseItem() {
-	      _todoStore2.default.dispatch({ type: 'TOGGLE_PAUSE_TODO', id: this.props.todo.id });
 	      clearInterval(this.intervalTimer);
+	      _todoStore2.default.dispatch({ type: 'TOGGLE_PAUSE_TODO', id: this.props.todo.id, timer: this.state.timer });
 	    }
 	  }, {
 	    key: 'removeItem',
@@ -34721,21 +34721,22 @@
 	    value: function increaseTimer() {
 	      this.setState({
 	        timer: this.state.timer + 1,
-	        timer_formated: this.state.timer.toString().toHHMMSS()
+	        timer_formated: (this.state.timer + 1).toString().toHHMMSS()
 	      });
 	    }
 	  }, {
 	    key: 'completeItem',
 	    value: function completeItem() {
-	      _todoStore2.default.dispatch({ type: 'COMPLETE_TODO', id: this.props.todo.id, timer: this.state.timer });
 	      clearInterval(this.intervalTimer);
+	      _todoStore2.default.dispatch({ type: 'COMPLETE_TODO', id: this.props.todo.id, timer: this.state.timer });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var itemStyle = {
-	        color: this.props.todo.complete === true ? '#13b913' : '#ff0000'
-	      };
+	      console.log('TodoItem this.state', this.state);
+	      // const itemStyle = {
+	      //   color: this.props.todo.complete === true ? '#13b913' : '#ff0000'
+	      // };
 	      var playBtn = void 0;
 	      var stopBtn = void 0;
 
@@ -34761,7 +34762,7 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'container', style: itemStyle },
+	        { className: 'container' },
 	        _react2.default.createElement(
 	          _Card.Card,
 	          { style: styles.fullWidth },

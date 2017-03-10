@@ -41,8 +41,8 @@ class TodoItem extends React.Component{
       this.completeItem = this.completeItem.bind(this);
       this.increaseTimer = this.increaseTimer.bind(this);
       this.state = {
-        timer: 0,
-        timer_formated: toHHMMSS(0)
+        timer: this.props.todo.timer,
+        timer_formated: toHHMMSS(this.props.todo.timer)
       }
   }
 
@@ -51,8 +51,8 @@ class TodoItem extends React.Component{
   }
 
   togglePauseItem(){
-    todoStore.dispatch({type:'TOGGLE_PAUSE_TODO', id: this.props.todo.id});
     clearInterval(this.intervalTimer);
+    todoStore.dispatch({type:'TOGGLE_PAUSE_TODO', id: this.props.todo.id, timer: this.state.timer});
   }
 
   removeItem(){
@@ -69,23 +69,23 @@ class TodoItem extends React.Component{
   increaseTimer() {
     this.setState({
       timer: this.state.timer + 1,
-      timer_formated: this.state.timer.toString().toHHMMSS()
+      timer_formated: (this.state.timer + 1).toString().toHHMMSS()
     })
   }
 
   completeItem(){
-    todoStore.dispatch({type: 'COMPLETE_TODO', id: this.props.todo.id, timer: this.state.timer});
     clearInterval(this.intervalTimer);
+    todoStore.dispatch({type: 'COMPLETE_TODO', id: this.props.todo.id, timer: this.state.timer});
   }
 
 
   render(){
-    const itemStyle = {
-      color: this.props.todo.complete === true ? '#13b913' : '#ff0000'
-    };
+    console.log('TodoItem this.state', this.state)
+    // const itemStyle = {
+    //   color: this.props.todo.complete === true ? '#13b913' : '#ff0000'
+    // };
     let playBtn
     let stopBtn
-
 
     if(this.props.todo.complete)
       playBtn = ''
@@ -102,7 +102,7 @@ class TodoItem extends React.Component{
       stopBtn = <IconButton onClick={this.completeItem} label="Stop"><StopIcon /></IconButton>
 
     return (
-      <div className="container" style={itemStyle }>
+      <div className="container" >
         <Card style={styles.fullWidth}>
           <CardHeader
             title={this.props.todo.title}

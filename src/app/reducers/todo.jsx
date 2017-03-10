@@ -42,7 +42,7 @@ function todo(state={}, action){
       if(state.id !== action.id) return state;
       else return Object.assign({},
           state,
-          {pause: !state.pause});
+          {pause: !state.pause, timer: action.timer, timer_formated: action.timer.toString().toHHMMSS()});
     break;
 
     case 'COMPLETE_TODO':
