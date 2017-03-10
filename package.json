@@ -1,12 +1,12 @@
 {
-  "name": "react-example-class3",
+  "name": "Material Todo",
   "version": "1.0.0",
-  "description": "React Example, class 3, course of react.",
+  "description": "Todo app for testing React with Redux",
   "main": "app.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "Cesar Casas <cesarcasas@bsdsolutions.com.ar> (https://ar.linkedin.com/in/cesarcasas)",
+  "author": "Nicolás Cieri <ncierisalcedo@gmail.com.ar> (https://www.linkedin.com/in/nicolás-cieri-salcedo-6b37bb97)",
   "license": "ISC",
   "dependencies": {
     "babel-loader": "^6.2.10",
