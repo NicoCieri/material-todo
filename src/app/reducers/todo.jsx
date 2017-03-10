@@ -10,6 +10,7 @@ function todo(state={}, action){
         init: false,
         timer: 0,
         timer_formated: '0'.toString().toHHMMSS(),
+        pause: true,
         complete: false,
         id: id++
       }
@@ -33,7 +34,15 @@ function todo(state={}, action){
       if(state.id !== action.id) return state;
       else return Object.assign({},
           state,
-          {init: true, timer: 0});
+          {init: true, timer: 0, pause: false});
+    break;
+
+    case 'TOGGLE_PAUSE_TODO':
+      // console.log(action);
+      if(state.id !== action.id) return state;
+      else return Object.assign({},
+          state,
+          {pause: !state.pause});
     break;
 
     case 'COMPLETE_TODO':

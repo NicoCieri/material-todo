@@ -14,6 +14,8 @@ import TodosList from './components/TodosList.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import {List, ListItem} from 'material-ui/List';
+import {grey50, red400, amber600} from 'material-ui/styles/colors';
+
 
 
 
@@ -36,14 +38,22 @@ class App extends React.Component {
           <AppBar
             title="TO DO App"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
+            zDepth={0}
+            style={styles.header}
           />
-          <div className="container">
+          <div>
             <FormTodo />
             <TodosList todos={todoStore.getState()} />
           </div>
         </div>
       </MuiThemeProvider>
     );
+  }
+}
+
+const styles = {
+  header: {
+    background: red400
   }
 }
 

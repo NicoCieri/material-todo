@@ -6,9 +6,13 @@ function todos(state=[], action){
     case 'ADD_TODO':
       return [...state, todo(null, action)];
     break;
-    
+
     case 'TOGGLE_TODO':
       // console.log(' le action> ' , action);
+      return state.map( t=> todo(t, action));
+    break;
+
+    case 'TOGGLE_PAUSE_TODO':
       return state.map( t=> todo(t, action));
     break;
 

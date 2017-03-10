@@ -17,7 +17,6 @@ class TodosList extends React.Component{
           return (
             <div>
               <TodoItem key={t.id} todo={t} />
-              <Divider />
             </div>
           )
         })}
