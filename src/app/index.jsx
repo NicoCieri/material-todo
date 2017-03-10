@@ -9,6 +9,8 @@ import Clock from './components/Clock.jsx';
 import Title from './components/Title.jsx';
 import FormTodo from './components/FormTodo.jsx';
 import TodosList from './components/TodosList.jsx';
+import { loadState, saveState } from './localStorage'
+import {throttle } from 'lodash'
 
 // Material UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -17,16 +19,14 @@ import {List, ListItem} from 'material-ui/List';
 import {grey50, red400, amber600} from 'material-ui/styles/colors';
 
 
-
-
-
 // let todoStore = createStore(todos);
 
-todoStore.subscribe((state)=>{
+todoStore.subscribe(throttle( (state)=>{
+  saveState(todoStore.getState())
   console.log('------------------------------------------------');
   todoStore.getState()
-  .forEach(e=> console.log(e));
-});
+    .forEach(e=> console.log(e));
+}), 1000);
 
 
 class App extends React.Component {

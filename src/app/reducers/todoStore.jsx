@@ -1,6 +1,11 @@
-import {createStore} from 'redux';
+import {createStore} from 'redux'
 import todos from './todos.jsx'
+import {loadState} from '../localStorage'
 
-let todoStore = createStore(todos);
+const persistedState = loadState()
+let todoStore = createStore(
+  todos,
+  persistedState
+);
 
-export default todoStore;
+export default todoStore

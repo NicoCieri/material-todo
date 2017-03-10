@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
+import { v4 } from 'node-uuid';
 
-let id = 0;
 
 function todo(state={}, action){
   switch (action.type) {
@@ -12,7 +12,7 @@ function todo(state={}, action){
         timer_formated: '0'.toString().toHHMMSS(),
         pause: true,
         complete: false,
-        id: id++
+        id: v4()
       }
     break;
 

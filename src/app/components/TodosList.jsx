@@ -13,14 +13,7 @@ class TodosList extends React.Component{
     let list = '';
     return (
       <List>
-        {this.props.todos.map((t)=>{
-          return (
-            <div>
-              <TodoItem key={t.id} todo={t} />
-            </div>
-          )
-        })}
-
+        {this.props.todos.map((t)=> <TodoItem key={t.id} todo={t} /> )}
       </List>
     );
   }
