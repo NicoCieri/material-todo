@@ -1,8 +1,9 @@
 {
-  "name": "Material Todo",
+  "name": "material-todo",
   "version": "1.0.0",
   "description": "Todo app for testing React with Redux",
   "main": "app.js",
+  "repository": "git@github.com:NicoCieri/material-todo",
   "scripts": {
     "test": "mocha"
   },

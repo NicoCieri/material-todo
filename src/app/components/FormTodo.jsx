@@ -28,18 +28,13 @@ class FormTodo extends React.Component{
     changeField(evt){
       let own = {};
       own[evt.target.id] = evt.target.value;
-      // Redibuja el input cada vez que escribe el input
       this.setState(own);
     }
 
     handleSubmit(evt){
       evt.preventDefault();
-      // Si está vacio
       if(this.state.title.trim()==='') return;
-      // Si no está vacio
-      // Agrega el nuevo todo con el dispatcher
       todoStore.dispatch({type: 'ADD_TODO', title: this.state.title});
-      // Vacia el input
       this.setState({
         title:''
       });
